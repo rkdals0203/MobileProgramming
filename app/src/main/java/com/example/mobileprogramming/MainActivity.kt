@@ -7,20 +7,19 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.example.mobileprogramming.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding  = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val txtView: TextView = findViewById(R.id.txtSay)
-        txtView.text = "This string is changed"
-
-        val txtBtn: Button = findViewById(R.id.btnSay)
-        txtBtn.setOnClickListener{
-            txtView.visibility = View.INVISIBLE
+        binding.btnSay.setOnClickListener{
+            binding.txtSay.text = "I love Android!!"
         }
+
         /* HW Assignment problem 1
        val expression = "100 * 10"
        val tokenizedExpression = StringTokenizer(expression) //I used StringTokenizer class to tokenize strings with white space
