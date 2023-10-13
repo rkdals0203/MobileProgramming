@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
         val binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent(this, SubActivity::class.java).apply{
-            data = Uri.parse("http://seoultech.ac.kr")
+        val intent = Intent(Intent.ACTION_SEND).apply{
+            type = "image/jpg "
         }
         binding.btnSay.setOnClickListener { startActivity(intent) }
 
