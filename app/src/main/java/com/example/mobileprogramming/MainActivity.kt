@@ -1,6 +1,7 @@
 package com.example.mobileprogramming
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mobileprogramming.databinding.ActivityMainBinding
@@ -12,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         val binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnSay.setOnClickListener {
-            val intent = Intent(this, SubActivity::class.java)
-            startActivity(intent)
+        val intent = Intent(this, SubActivity::class.java).apply{
+            data = Uri.parse("http://seoultech.ac.kr")
         }
+        binding.btnSay.setOnClickListener { startActivity(intent) }
 
         /* HW Assignment problem 1
        val expression = "100 * 10"
