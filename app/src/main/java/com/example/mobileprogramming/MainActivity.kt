@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         val binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent(Intent.ACTION_SEND).apply{
-            type = "image/jpg "
-        }
-        binding.btnSay.setOnClickListener { startActivity(intent) }
+        val intent = Intent(Intent.ACTION_SEND)
+        val chooser = Intent.createChooser(intent, "Show me the Picture!")
+
+        binding.btnSay.setOnClickListener { startActivity(chooser) }
 
         /* HW Assignment problem 1
        val expression = "100 * 10"
