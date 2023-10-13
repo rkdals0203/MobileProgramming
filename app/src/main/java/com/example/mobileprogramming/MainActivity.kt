@@ -1,12 +1,8 @@
 package com.example.mobileprogramming
 
-import android.graphics.Point
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import com.example.mobileprogramming.databinding.ActivityMainBinding
 
 
@@ -16,8 +12,9 @@ class MainActivity : AppCompatActivity() {
         val binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnSay.setOnClickListener{
-            binding.txtSay.text = "I love Android!!"
+        binding.btnSay.setOnClickListener {
+            val intent = Intent(this, SubActivity::class.java)
+            startActivity(intent)
         }
 
         /* HW Assignment problem 1
