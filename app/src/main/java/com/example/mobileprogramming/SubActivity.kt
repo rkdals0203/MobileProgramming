@@ -10,6 +10,12 @@ class SubActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         val binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d("ITM", intent.data.toString())
+
+        Log.d("ITM", "SubActivity created!")
+        binding.btnReply.setOnClickListener {
+            intent.putExtra("grade", "${binding.txtReply.text}")
+            setResult(RESULT_OK, intent)
+            finish()
+        }
     }
 }
