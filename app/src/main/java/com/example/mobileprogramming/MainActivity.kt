@@ -6,28 +6,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.mobileprogramming.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+    val requestLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        Log.d("ITM","${it.resultCode}")
+        Log.d("ITM", "${it.data?.getStringExtra("grade")}")
+        Toast.makeText(this, it.data?.getStringExtra("grade"), Toast.LENGTH_SHORT).show()
+    }
+    val uriLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){
+        Log.d("ITM",it.toString())
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("ITM", "onCreated Called!")
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnSay.setOnClickListener {
-            val intent = Intent(this, SubActivity::class.java)
-            startActivityForResult(intent, 2021)
-
-        }
+        Log.d("ITM", "onCreated Called!")
+        val intent = Intent(this, SubActivity::class.java)
+        binding.btnSay.setOnClickListener { requestLauncher.launch(intent) } //
+        uriLauncher.launch("image/*")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.d("ITM", "requestCode: $requestCode resultCode: $resultCode")
-        Log.d("ITM", "${data?.getStringExtra("grade")}")
-        Toast.makeText(this, data?.getStringExtra("grade"), Toast.LENGTH_SHORT).show()
-    }
 }
 
 
